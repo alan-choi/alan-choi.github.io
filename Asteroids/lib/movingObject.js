@@ -4,12 +4,12 @@
     window.Asteroids = {};
   }
 
-  var MovingObject = window.Asteroids.MovingObject = function(pos, vel, radius, color, game) {
-    this.pos = pos;
-    this.vel = vel;
-    this.radius = radius;
-    this.color = color;
-    this.game = game;
+  var MovingObject = window.Asteroids.MovingObject = function(options) {
+    this.pos = options.pos;
+    this.vel = options.vel;
+    this.radius = options.radius;
+    this.color = options.color;
+    this.game = options.game;
   };
 
   MovingObject.prototype.draw = function(ctx){
@@ -30,18 +30,13 @@
     var dx = this.pos[0] - otherObject.pos[0];
     var dy = this.pos[1] - otherObject.pos[1];
     var distance = Math.sqrt(dx*dx + dy*dy);
-
-    if (distance < (this.radius + otherObject.radius)) {
-      return true;
-    } else {
-      return false;
-    }
+    return distance < (this.radius + otherObject.radius);
   };
 
   MovingObject.prototype.collideWith = function(otherObject){
-    this.game.remove(otherObject);
-    this.game.remove(this);
-
+    // debugger;
+    // this.game.remove(otherObject);
+    // this.game.remove(this);
   };
 
 
