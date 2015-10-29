@@ -14,7 +14,7 @@ if (typeof Asteroids === 'undefined'){
 
   Asteroid.COLOR = '#696969';
   Asteroid.RADIUS = 60;
-  Asteroid.SPEED = 3;
+  Asteroid.SPEED = 2;
 
   Asteroids.Utils.inherits(Asteroid, Asteroids.MovingObject);
 
@@ -27,7 +27,7 @@ if (typeof Asteroids === 'undefined'){
 
   Asteroid.prototype.draw = function(ctx) {
     // var imageNum =(Math.floor(Math.random() * 5) + 1);
-    var imageNum =5;
+    var imageNum =3;
     var player = new Image();
     player.src = "images/"+imageNum+".png";
     ctx.drawImage(player, this.pos[0], this.pos[1]);
