@@ -17,9 +17,12 @@
   Asteroids.Utils.inherits(Basket, Asteroids.MovingObject);
 
   Basket.prototype.draw = function(ctx) {
-    var hoop = new Image();
+    var hoop = new Image(40, 40);
     hoop.src = "images/hoop.png";
-    ctx.drawImage(hoop, this.pos[0], this.pos[1]);
+    ctx.save();
+    ctx.translate(this.pos[0], this.pos[1]);
+    ctx.drawImage(hoop, -40, -40);
+    ctx.restore();
   };
 
   Basket.prototype.relocate = function() {

@@ -1,4 +1,5 @@
 <html>
+  <link href='https://fonts.googleapis.com/css?family=Exo:400,300,600' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="stylesheets/game.css" />
   <script type="application/javascript" src="vendor/keymaster.js"></script>
 
@@ -10,16 +11,32 @@
   <script src="lib/game.js"></script>
   <script src="lib/gameView.js"></script>
   <body>
-    <div class="score">
-      <p>score:</p>
-      <p id="game-score"></p>
+    <h1> Buckets </h1>
+    <div class="game-container">
+      <div class="game-details">
+        <div class="score">
+          <p>score:</p>
+          <p id="game-score"></p>
+        </div>
+        <div class="lives">
+          <p>lives:</p>
+          <p id="game-lives"></p>
+        </div>
+      </div>
+
+      <canvas id="canvas"></canvas>
+      <div id="game-over"></div>
+
+      <div class="instructions">
+        <ul>
+          <li><img src="images/up-24.png"/></li>
+          <li><img src="images/down-24.png"/></li>
+          <li><img src="images/left-24.png"/></li>
+          <li><img src="images/right-24.png"/></li>
+          <!-- <li><img src="images/esc.png"/>restart</li> -->
+        </ul>
+      </div>
     </div>
-    <div class="lives">
-      <p>lives:</p>
-      <p id="game-lives"></p>
-    </div>
-    <canvas id="canvas"></canvas>
-    <div id="game-over"></div>
   </body>
 
   <script>

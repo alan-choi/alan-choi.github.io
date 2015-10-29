@@ -13,7 +13,7 @@ if (typeof Asteroids === 'undefined'){
   };
 
   Asteroid.COLOR = '#696969';
-  Asteroid.RADIUS = 60;
+  Asteroid.RADIUS = 57;
   Asteroid.SPEED = 2;
 
   Asteroids.Utils.inherits(Asteroid, Asteroids.MovingObject);
@@ -25,11 +25,16 @@ if (typeof Asteroids === 'undefined'){
     }
   };
 
+  Asteroid.prototype.isWrappable = true;
+
   Asteroid.prototype.draw = function(ctx) {
     // var imageNum =(Math.floor(Math.random() * 5) + 1);
-    var imageNum =3;
-    var player = new Image();
+    var imageNum =1;
+    var player = new Image(60, 60);
     player.src = "images/"+imageNum+".png";
-    ctx.drawImage(player, this.pos[0], this.pos[1]);
+    ctx.save();
+    ctx.translate(this.pos[0], this.pos[1]);
+    ctx.drawImage(player, -50, -60);
+    ctx.restore();
   };
 })();

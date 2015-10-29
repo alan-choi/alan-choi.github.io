@@ -14,8 +14,8 @@
   };
 
   Game.DIM_X = 800;
-  Game.DIM_Y = 500;
-  Game.NUM_ASTEROIDS = 1;
+  Game.DIM_Y = 400;
+  Game.NUM_ASTEROIDS = 4;
 
   Game.prototype.displayStats = function(){
     document.getElementById("game-score").innerHTML= this.score;
@@ -85,21 +85,38 @@
 
   Game.prototype.moveObjects = function(){
     var objects = this.allObjects();
-
     objects.forEach(function(object){
-      object.move();
+      if (object instanceof Asteroids.Ship ||
+          object instanceof Asteroids.Asteroid){
+        object.move();
+      }
     });
   };
 
-  Game.prototype.wrap = function(pos){
-    if(pos[0] >= Game.DIM_X){
-      return [0, pos[1]];
-    } else if (pos[1] >= Game.DIM_Y){
-      return [pos[0], 0];
+  // Game.prototype.wrap = function(pos){
+  //   if(pos[0] >= Game.DIM_X){
+  //     return [0, pos[1]];
+  //   } else if (pos[1] >= Game.DIM_Y){
+  //     return [pos[0], 0];
+  //   } else {
+  //     return pos;
+  //   }
+  // };
+  Game.prototype.wrap = function (pos) {
+  return [
+    wrap(pos[0], Game.DIM_X), wrap(pos[1], Game.DIM_Y)
+  ];
+
+  function wrap(coord, max) {
+    if (coord < 0) {
+      return max - (coord % max);
+    } else if (coord > max) {
+      return coord % max;
     } else {
-      return pos;
+      return coord;
     }
-  };
+  }
+};
 
   Game.prototype.allObjects = function () {
    return [].concat(this.ships, this.asteroids, this.baskets);
@@ -121,6 +138,10 @@
      });
    });
  };
+
+  Game.prototype.isOutOfBounds = function (pos) {
+    return (pos[0] < 0) || (pos[1] < 0) |(pos[0] > Game.DIM_X) || (pos[1] > Game.DIM_Y);
+  };
 
   Game.prototype.step = function(){
     this.moveObjects();

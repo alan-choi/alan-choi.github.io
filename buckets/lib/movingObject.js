@@ -21,8 +21,8 @@
   };
 
   MovingObject.prototype.move = function(){
-    var new_pos = [(this.pos[0] + this.vel[0]),(this.pos[1] + this.vel[1])];
-    this.pos = this.game.wrap(new_pos);
+    this.pos = [(this.pos[0] + this.vel[0]),(this.pos[1] + this.vel[1])];
+    this.pos = this.game.wrap(this.pos);
   };
 
   MovingObject.prototype.isCollidedWith = function(otherObject){
@@ -38,5 +38,6 @@
     // this.game.remove(this);
   };
 
+  MovingObject.prototype.isWrappable = true;
 
 })();
