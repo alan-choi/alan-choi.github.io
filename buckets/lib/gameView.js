@@ -27,15 +27,20 @@
     });
 
     key("esc", function () { location.reload();});
+    // key("space", function () { this.stop();}.bind(this));
   };
 
   GameView.prototype.start = function(){
     var that = this;
-    setInterval(function(){
+    this.timer = setInterval(function(){
       that.game.step();
       that.game.draw(that.ctx);
-      }, 20 );
+    }, 1000 / Asteroids.Game.FPS );
 
       this.bindKeyHandlers();
   };
+
+  GameView.prototype.stop = function () {
+  clearInterval(this.timer);
+};
 })();

@@ -4,14 +4,15 @@
   margin: auto;
   width: 900px;
   height: 600px;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
 }
 #canvas {
   display: block;
   background-image: url("../images/court.jpg");
   border: 20px solid navy;
-  margin: 60px auto 0px auto;
+  margin: 10px auto 0px auto;
   width: 800px;
+  border-radius: 5px;
 }
 #game-over {
   font-size: 30;
@@ -27,31 +28,65 @@
 }
 
 .game-details {
+  position: relative;
+  height: 80px;
+  width: 140px;
   display: block;
   margin: auto;
+  background-color: gray;
+  border-radius: 1px;
 }
-.score {
-  font-weight: 600;
-  margin: 0px 10px 0px 0px;
+.corner {
   position: absolute;
-  left: 400px;
-}
-.lives {
-  float: left;
-  font-weight: 600;
-  margin: 0px 0px 0px 10px;
-  position: absolute;
-  right: 400px;
+  bottom: 0px;
+  height: 0px;
+  width: 120px;
+  border-top: 35px solid gray;
+  border-right: 10px solid #282828;
+  border-left: 10px solid #282828;
 }
 
-.instructions > ul {
-  /*position: absolute;
-  right: 10px;*/
-  top: 0px;
+.score {
+  background-color: white;
+  border-radius: 1px;
+  height: 45px;
+  width: 50px;
+  color: #FF6600;
+  font-weight: 600;
+  margin: 10px 10px 0px 0px;
+  position: absolute;
+  left: 10px;
+  z-index: 3;
+}
+
+.lives {
+  border-radius: 1px;
+  background-color: white;
+  height: 45px;
+  width: 50px;
+  float: left;
+  font-weight: 600;
+  margin: 10px 0px 0px 10px;
+  position: absolute;
+  right: 10px;
+  z-index: 3;
+
+}
+
+.instructions {
+  color: white;
+  position: absolute;
+  right: 20px;
+  top: 10px;
   list-style: none;
 }
 
+li {
+  margin: 0px 15px;
+}
+
 body {
+  background-color: #282828;
   text-align: center;
   font-family: Exo;
 }
@@ -61,6 +96,7 @@ p {
 }
 
 h1 {
+  color: white;
   margin: 20px 0px 0px 0px;
 }
 

@@ -15,6 +15,7 @@
 
   Game.DIM_X = 800;
   Game.DIM_Y = 400;
+  Game.FPS = 30;
   Game.NUM_ASTEROIDS = 4;
 
   Game.prototype.displayStats = function(){
@@ -31,6 +32,7 @@
     this.lives -= 1;
     this.displayStats();
     if (this.lives <= 0) {
+      // GameView.stop();
       document.getElementById("game-over").innerHTML = "No more lives.. hit 'esc' to resart";
     }
   };
