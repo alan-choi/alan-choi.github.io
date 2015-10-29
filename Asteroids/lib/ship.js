@@ -12,9 +12,15 @@
   };
 
   Ship.COLOR = '#FF6600';
-  Ship.RADIUS = 15;
+  Ship.RADIUS = 25;
 
   Asteroids.Utils.inherits(Ship, Asteroids.MovingObject);
+
+  Ship.prototype.draw = function(ctx) {
+    var ball = new Image();
+    ball.src = "images/basketball.png";
+    ctx.drawImage(ball, this.pos[0], this.pos[1]);
+  };
 
   Ship.prototype.power = function(impulse) {
     this.vel[0] += impulse[0];

@@ -15,7 +15,7 @@
 
   Game.DIM_X = 800;
   Game.DIM_Y = 500;
-  Game.NUM_ASTEROIDS = 10;
+  Game.NUM_ASTEROIDS = 7;
 
   Game.prototype.displayStats = function(){
     document.getElementById("game-score").innerHTML= this.score;
