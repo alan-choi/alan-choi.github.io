@@ -43,7 +43,7 @@ span.right {
 	margin-right: 25px;
 	color: white;
 }
-.yelpnow-details {
+div.yelpnow-details {
 	font-size: 36px;
 	position: fixed;
 	left: 25vw;
