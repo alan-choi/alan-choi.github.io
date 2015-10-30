@@ -11,6 +11,7 @@
     this.lives = 5;
     this.displayStats();
     this.addAsteroids();
+    this.highScore = 0;
   };
 
   Game.DIM_X = 800;
@@ -32,9 +33,16 @@
     this.lives -= 1;
     this.displayStats();
     if (this.lives <= 0) {
-      // GameView.stop();
+      if (this.score > this.highScore && this.lives === 0) {
+        this.highScore = this.score;
+      }
       document.getElementById("game-over").innerHTML = "No more lives.. hit 'esc' to resart";
     }
+  };
+
+  Game.prototype.resetGame = function() {
+    this.lives = 5;
+    this.score = 0;
   };
 
   Game.prototype.add = function(object) {
