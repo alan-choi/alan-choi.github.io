@@ -43,6 +43,63 @@ span.right {
 	margin-right: 25px;
 	color: white;
 }
+.yelpnow-details {
+	font-size: 36px;
+	position: fixed;
+	left: 25vw;
+	top: 15vh;
+	height: 506px;
+	border: 3px solid white;
+	border-radius: 3px;
+	background-color: white;
+	visibility: hidden;
+	/*display: none;*/
+	z-index: 5;
+	box-shadow: 0px 50px 50px 500px rgba(0, 0, 0, 0.7);
+}
+
+.yelpnow-details img {
+	height: 500px;
+	width: 700px;
+}
+.yelpnow-details ul {
+	padding: 0px;
+}
+
+.yelpnow-details li {
+	padding: 0px;
+	display: none;
+}
+
+.yelpnow-details li.active {
+	display: block;
+}
+
+button.details {
+	padding: 0px 5px;
+	box-shadow: none;
+	color: white;
+	height: 100%;
+}
+button.details:focus {
+	outline: none;
+}
+button.slide-left {
+	position:absolute;
+	left:0px;
+}
+
+button.slide-right {
+	position:absolute;
+	top: 0px;
+	right: 0px;
+}
+
+div.show {
+	visibility: visible;
+	/*display: block;*/
+}
+
 /* Reset */
 
 	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {

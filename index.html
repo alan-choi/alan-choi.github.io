@@ -58,6 +58,7 @@
 					<section id="one" class="wrapper style1 special">
 						<div class="inner">
 							<header class="major">
+								<img src="images/profile-pic.png" />
 								<h2>A creative, detail oriented software developer</h2>
 								<p>I love finding solutions to problems and building aesthetic, functional web applications.<br />
 								Besides web development, I have a passion for sports, the outdoors, and photography.</p>
@@ -79,13 +80,23 @@
 				<!-- Two -->
 					<section id="two" class="wrapper alt style2">
 						<section class="spotlight">
-							<div class="image"><img src="images/projects/yelpnow/1.png" alt="" /></div><div class="content">
+							<div id ="yelpnow" class="image"><img src="images/projects/yelpnow/1.png" alt="" /></div><div class="content">
 								<h2><a href="http://www.yelpnow.us" target="_blank">YelpNow</a></h2>
 								<p>
 									Provides a clean, quick interface to search only for open businesses,
 									read and post reviews.  Built with React.js using Flux architecture
  									and Ruby on Rails.
 								</p>
+							</div>
+							<div class="yelpnow-details">
+								<button class="details slide-left"><</button>
+								<ul class="yelpnow-images">
+									<li class="active"><img src="images/projects/yelpnow/home.png"></li>
+									<li class=""><img src="images/projects/yelpnow/business-index.png"></li>
+									<li class=""><img src="images/projects/yelpnow/business-info.png"></li>
+									<li class=""><img src="images/projects/yelpnow/reviews-index.png"></li>
+								</ul>
+								<button class="details slide-right">></button>
 							</div>
 						</section>
 						<section class="spotlight">
@@ -212,6 +223,17 @@
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
-
+			<script src="assets/js/carousel.js"></script>
+			<script>
+				var $yelpnowDetails = $('.yelpnow-details');
+				$('#yelpnow').click(function(){
+					$('.yelpnow-details').toggleClass('show');
+				});
+			</script>
+			<script>
+				$(function() {
+					$('.yelpnow-details').carousel();
+				})
+			</script>
 	</body>
 </html>
