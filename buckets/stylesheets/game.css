@@ -16,9 +16,11 @@
 .tagline .title {
   font-size: 22px;
 }
+
 .tagline .content {
-  color: #FF8C00;
+  color: #FF8C00
 }
+
 #canvas {
   display: block;
   background-image: url("../images/court.jpg");

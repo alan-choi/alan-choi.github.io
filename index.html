@@ -83,22 +83,22 @@
 					<section id="two" class="wrapper alt style2">
 						<section class="spotlight">
 							<div id ="yelpnow" class="image"><img src="images/projects/yelpnow/1.png" alt="" /></div><div class="content">
-								<h2><a href="http://www.yelpnow.us" target="_blank">YelpNow</a></h2>
+								<h2><a href="http://www.yelpnow.info" target="_blank">YelpNow</a></h2>
 								<p>
 									Provides a clean, quick interface to search only for open businesses,
 									read and post reviews.  Built with React.js using Flux architecture
  									and Ruby on Rails.
 								</p>
 							</div>
-							<div class="yelpnow-details">
-								<button class="details slide-left"><</button>
-								<ul class="yelpnow-images">
-									<li class="active"><img src="images/projects/yelpnow/home.png"></li>
-									<li class=""><img src="images/projects/yelpnow/business-index.png"></li>
-									<li class=""><img src="images/projects/yelpnow/business-info.png"></li>
-									<li class=""><img src="images/projects/yelpnow/reviews-index.png"></li>
-								</ul>
-								<button class="details slide-right">></button>
+								<div class="yelpnow-details">
+									<button class="details slide-left"><</button>
+									<ul class="yelpnow-images">
+										<li class="active"><img src="images/projects/yelpnow/home.png"></li>
+										<li class=""><img src="images/projects/yelpnow/business-index.png"></li>
+										<li class=""><img src="images/projects/yelpnow/business-info.png"></li>
+										<li class=""><img src="images/projects/yelpnow/reviews-index.png"></li>
+									</ul>
+									<button class="details slide-right">></button>
 							</div>
 						</section>
 						<section class="spotlight">
@@ -115,9 +115,23 @@
 								<p>
 									A console-based, colorized, two-player chess game.
 								</p>
+								<!-- <div class="show-more"></div> -->
 							</div>
 						</section>
+						<section class="spotlight">
+						</section>
+						<!-- <div class=other-projects>
+						<section class="spotlight other-projects">
+							<div class="image"><img src="images/projects/piano/piano-app.png" alt="" /></div><div class="content">
+								<h2><a href="https://areactfulpiano.herokuapp.com">Piano</a></h2>
+								<p>
+									A piano web app built with React.js.
+								</p>
+							</div>
+						</section>
+					</div> -->
 					</section>
+
 
 
 				<!-- Three -->
@@ -230,6 +244,10 @@
 				var $yelpnowDetails = $('.yelpnow-details');
 				$('#yelpnow').click(function(){
 					$('.yelpnow-details').toggleClass('show');
+				});
+				var $otherProjects = $('.other-projects');
+				$('.show-more').click(function(){
+					$otherProjects.toggleClass('show');
 				});
 			</script>
 			<script>

@@ -12,7 +12,7 @@
   };
 
   Basket.COLOR = '#CC0000';
-  Basket.RADIUS = 40;
+  Basket.RADIUS = 5;
 
   Asteroids.Utils.inherits(Basket, Asteroids.MovingObject);
 

@@ -43,6 +43,7 @@ span.right {
 	margin-right: 25px;
 	color: white;
 }
+
 div.yelpnow-details {
 	font-size: 36px;
 	position: fixed;
@@ -96,8 +97,24 @@ button.slide-right {
 }
 
 div.show {
-	/*visibility: visible;*/
 	display: block;
+}
+.spotlight {
+	position: relative;
+}
+
+.show-more {
+	height: 10px;
+	width: 25px;
+	background-color: white;
+	position: absolute;
+	bottom: 0px;
+}
+/*section.show{
+	display: block;
+}*/
+.other-projects{
+	display: none;
 }
 
 /* Reset */

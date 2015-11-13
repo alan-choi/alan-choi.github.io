@@ -17,6 +17,8 @@
   Asteroids.Utils.inherits(Ship, Asteroids.MovingObject);
 
   Ship.prototype.draw = function(ctx) {
+    ctx.globalCompositeOperation='destination-over';
+
     var ball = new Image(25, 25);
     ball.src = "images/basketball.png";
     ctx.save();
