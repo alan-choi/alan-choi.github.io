@@ -9,7 +9,7 @@
     this.bindEvents();
     this.setupBoard();
   };
-
+  
   GamePlay.prototype.bindEvents = function() {
     this.$el.on("click", "li", (function(event){
       var $tile = $(event.currentTarget);

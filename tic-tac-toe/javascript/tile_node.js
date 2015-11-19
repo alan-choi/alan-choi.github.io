@@ -11,12 +11,14 @@
   };
 
   TileNode.prototype.isLosingNode = function(otherMark) {
-    if (this.board.gameover()){
-      return this.board.won() && this.board.winner() === "X";
+    //losing node if winner is player's mark
+    if (this.board.winner() || this.board.tied()){
+      return this.board.winner() === "X";
     }
+    //computer's turn return true if all children are losing nodes
+    //player's turn return true if any children are losing nodes
     if (this.mark === otherMark) {
       return this.children().every(function(child) {
-
         return child.isLosingNode(otherMark);
       });
     } else {
@@ -27,11 +29,14 @@
   };
 
   TileNode.prototype.isWinningNode = function(otherMark) {
-    if (this.board.gameover()) {
-      return this.board.won() && this.board.winner() === otherMark;
+    //winning node if winner is the computer
+    if (this.board.winner() || this.board.tied()){
+      return this.board.winner() === otherMark;
     }
+    //computer's turn return true if any its children are winning
+    //player's turn return true if all of its children are winning
     if (this.mark === otherMark) {
-      //if any children are a winning node
+      //if any children are a winning node return true
       this.children().some(function(child){
         return child.isWinningNode(otherMark);
       });

@@ -37,10 +37,6 @@
     return true;
   };
 
-  Board.prototype.gameover = function() {
-    return this.won() || this.tied();
-  };
-
   Board.prototype.winner = function() {
     var rows = this.grid;
     var cols = this.transposeGrid();
@@ -52,10 +48,6 @@
       }
     }
     return null;
-  };
-
-  Board.prototype.won = function() {
-    return this.winner() !== null;
   };
 
   Board.prototype.transposeGrid = function() {
