@@ -1,0 +1,40 @@
+body{
+  text-align: center;
+  font-family: sans-serif;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 300;
+}
+
+li {
+  color: white;
+  font-size: 50px;
+  font-weight: 200;
+  line-height: 100px;
+  background-color: #009999;
+  display: block;
+  float:left;
+  border: 1px solid black;
+  height: 100px;
+  width: 100px;
+  box-sizing: border-box;
+}
+
+li:hover {
+  background-color: #336699;
+  cursor: pointer;
+}
+
+li.revealed {
+  background-color: #0099CC;
+}
+
+ul {
+  margin: auto;
+  height: 300px;
+  width: 300px;
+  border: 1px solid black;
+  padding: 0px;
+}
