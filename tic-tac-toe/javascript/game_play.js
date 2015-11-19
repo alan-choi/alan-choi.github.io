@@ -29,8 +29,11 @@
   };
 
   GamePlay.prototype.checkWinner = function() {
-    if (this.game.board.gameover()) {
-      alert("Gameover "+this.game.board.winner()+" won.");
+    if (this.game.board.tied() && !this.game.board.winner()) {
+      alert("cats game");
+    }
+    if (this.game.board.winner()) {
+      alert("gameover '"+this.game.board.winner()+"' won.");
     }
   };
 
