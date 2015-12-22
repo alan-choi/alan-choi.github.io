@@ -35,7 +35,5 @@ var Tile = React.createClass({
       onClick={this.handleClick}>{tileText}</div>
     );
   }
-});
-
-React.render(<Game />, document.getElementById("minesweeper-game"));
-})(window.React);
+  });
+})();

@@ -1,3 +1,4 @@
+(function(React) {
 
 var Game = React.createClass({
   getInitialState: function() {
@@ -55,4 +56,7 @@ var Game = React.createClass({
         </div>
       </div>
     );}
-});
+})();
+
+React.render(<Game />, document.getElementById("minesweeper-game"));
+})(window.React);
