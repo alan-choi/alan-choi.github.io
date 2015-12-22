@@ -57,6 +57,3 @@ var Game = React.createClass({
       </div>
     );}
 })();
-
-React.render(<Game />, document.getElementById("minesweeper-game"));
-})(window.React);

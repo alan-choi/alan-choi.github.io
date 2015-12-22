@@ -12,7 +12,11 @@
   <body>
     <div id="minesweeper-game">
     </div>
-    <script src="board.js.jsx" type="text/jsx" charset="utf-8" ></script>
     <script src="tile.js.jsx" type="text/jsx" charset="utf-8" ></script>
+    <script src="board.js.jsx" type="text/jsx" charset="utf-8" ></script>
   </body>
+  <script type="text/javascript">
+    React.render(<Game />, document.getElementById("minesweeper-game"));
+  })(window.React);
+  </script>
 </html>
