@@ -46,7 +46,7 @@
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
-	var Game = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./components/game\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var Game = __webpack_require__(159);
 	
 	document.addEventListener("DOMContentLoaded", function () {
 	  return ReactDOM.render(React.createElement(Game, null), document.getElementById('content'));
@@ -19638,6 +19638,367 @@
 	
 	module.exports = __webpack_require__(3);
 
+
+/***/ },
+/* 159 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Board = __webpack_require__(160);
+	var React = __webpack_require__(1);
+	var Minesweeper = __webpack_require__(162);
+	
+	var Game = React.createClass({
+	  displayName: 'Game',
+	
+	  getInitialState: function () {
+	    var board = new Minesweeper.Board('easy');
+	    return {
+	      board: board,
+	      level: 'easy'
+	    };
+	  },
+	
+	  restartGame: function () {
+	    this.setState({ board: new Minesweeper.Board(this.state.level) });
+	  },
+	
+	  updateGame: function (tile, flagged) {
+	    if (flagged) {
+	      tile.toggleFlag();
+	    } else {
+	      tile.explore();
+	    }
+	
+	    this.setState({ board: this.state.board });
+	  },
+	
+	  handleLevel: function (event) {
+	    event.preventDefault();
+	    this.setState({
+	      board: new Minesweeper.Board(event.target.value),
+	      level: event.target.value
+	    });
+	  },
+	
+	  render: function () {
+	    var gameMessage = "";
+	
+	    if (this.state.board.gameLost() || this.state.board.gameWon()) {
+	      this.state.board.revealAll();
+	      var message = this.state.board.gameWon() ? "You Win!" : "You Lose!";
+	      gameMessage = React.createElement(
+	        'div',
+	        { className: 'game-result' },
+	        React.createElement(
+	          'div',
+	          null,
+	          React.createElement(
+	            'p',
+	            null,
+	            message
+	          ),
+	          React.createElement(
+	            'button',
+	            { onClick: this.restartGame },
+	            'Restart Game'
+	          )
+	        )
+	      );
+	    }
+	
+	    return React.createElement(
+	      'div',
+	      { className: 'game' },
+	      gameMessage,
+	      React.createElement(
+	        'h2',
+	        null,
+	        'Minesweeper'
+	      ),
+	      React.createElement(
+	        'p',
+	        null,
+	        '(alt + click) to flag tile'
+	      ),
+	      React.createElement(
+	        'label',
+	        null,
+	        'difficulty:'
+	      ),
+	      React.createElement(
+	        'select',
+	        { value: this.state.value, onChange: this.handleLevel },
+	        React.createElement(
+	          'option',
+	          { value: 'easy' },
+	          'easy'
+	        ),
+	        React.createElement(
+	          'option',
+	          { value: 'medium' },
+	          'medium'
+	        ),
+	        React.createElement(
+	          'option',
+	          { value: 'expert' },
+	          'expert'
+	        )
+	      ),
+	      React.createElement(Board, {
+	        board: this.state.board,
+	        updateGame: this.updateGame,
+	        level: this.state.level })
+	    );
+	  }
+	});
+	
+	module.exports = Game;
+
+/***/ },
+/* 160 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Tile = __webpack_require__(161);
+	var React = __webpack_require__(1);
+	
+	var Board = React.createClass({
+	  displayName: 'Board',
+	
+	  render: function () {
+	    var that = this;
+	    var board = this.props.board;
+	
+	    return React.createElement(
+	      'div',
+	      { className: 'board' },
+	      board.grid.map(function (row, rowIdx) {
+	        return React.createElement(
+	          'div',
+	          { className: 'row ' + that.props.level, key: rowIdx },
+	          row.map(function (tile, colIdx) {
+	            return React.createElement(Tile, {
+	              key: rowIdx * that.props.board.gridSize + colIdx,
+	              tile: tile,
+	              updateGame: that.props.updateGame });
+	          })
+	        );
+	      })
+	    );
+	  }
+	});
+	
+	module.exports = Board;
+
+/***/ },
+/* 161 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	
+	var Tile = React.createClass({
+	  displayName: "Tile",
+	
+	  handleClick: function (event) {
+	    event.preventDefault();
+	    var flagged = event.altKey;
+	    this.props.updateGame(this.props.tile, flagged);
+	  },
+	
+	  render: function () {
+	    var tile = this.props.tile;
+	    var bombCount = tile.tileValue() === 0 ? "" : tile.tileValue();
+	    var tileClass, text;
+	
+	    if (tile.explored && !tile.isBomb) {
+	      tileClass = "explored";
+	      text = bombCount;
+	    } else if (tile.flagged) {
+	      tileClass = "flagged";
+	      text = "F";
+	    } else if (tile.isBomb && tile.explored) {
+	      tileClass = "explored bomb";
+	      text = "B";
+	    } else {
+	      tileClass = "unexplored";
+	      text = "";
+	    }
+	
+	    return React.createElement(
+	      "div",
+	      { className: "tile " + tileClass, onClick: this.handleClick },
+	      " ",
+	      text,
+	      " "
+	    );
+	  }
+	});
+	
+	module.exports = Tile;
+
+/***/ },
+/* 162 */
+/***/ function(module, exports) {
+
+	(function () {
+	  if (typeof window.Minesweeper === 'undefined') {
+	    window.Minesweeper = {};
+	  }
+	
+	  var Tile = window.Minesweeper.Tile = function (board, pos) {
+	    this.board = board;
+	    this.pos = pos;
+	    this.flagged = false;
+	    this.explored = false;
+	    this.isBomb = false;
+	  };
+	
+	  // count the number of neighbors that are bombs
+	  Tile.prototype.tileValue = function () {
+	    var bombCount = 0;
+	
+	    this.neighbors().forEach(function (tile) {
+	      if (tile.isBomb) {
+	        bombCount++;
+	      }
+	    });
+	
+	    return bombCount;
+	  };
+	
+	  //explore all tiles if not a bomb and value = 0
+	  Tile.prototype.explore = function () {
+	    if (this.flagged || this.explored) {
+	      return this;
+	    }
+	
+	    this.explored = true;
+	    if (!this.isBomb && this.tileValue() === 0) {
+	      this.neighbors().forEach(function (tile) {
+	        tile.explore();
+	      });
+	    }
+	  };
+	
+	  //returns an array of tile objects
+	  Tile.prototype.neighbors = function () {
+	    var deltas = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]];
+	    var nearCords = [];
+	
+	    deltas.forEach((function (delta) {
+	      var newPos = [delta[0] + this.pos[0], delta[1] + this.pos[1]];
+	      if (this.board.validCord(newPos)) {
+	        nearCords.push(newPos);
+	      }
+	    }).bind(this));
+	    return nearCords.map((function (cord) {
+	      return this.board.grid[cord[0]][cord[1]];
+	    }).bind(this));
+	  };
+	
+	  Tile.prototype.plantBomb = function () {
+	    this.isBomb = true;
+	  };
+	
+	  Tile.prototype.toggleFlag = function () {
+	    if (!this.explored) {
+	      this.flagged = !this.flagged;
+	      return true;
+	    }
+	
+	    return false;
+	  };
+	
+	  var Board = window.Minesweeper.Board = function (difficulty) {
+	    if (difficulty === 'easy') {
+	      this.gridSize = 10;
+	      this.totalBombs = 10;
+	    } else if (difficulty === 'medium') {
+	      this.gridSize = 20;
+	      this.totalBombs = 40;
+	    } else if (difficulty === 'expert') {
+	      this.gridSize = 25;
+	      this.totalBombs = 70;
+	    }
+	
+	    this.grid = [];
+	    this.generateGrid();
+	    this.setBombs();
+	  };
+	
+	  Board.prototype.generateGrid = function () {
+	    for (var i = 0; i < this.gridSize; i++) {
+	      this.grid.push([]);
+	      for (var j = 0; j < this.gridSize; j++) {
+	        var tile = new Minesweeper.Tile(this, [i, j]);
+	        this.grid[i].push(tile);
+	      }
+	    }
+	  };
+	
+	  //check to only include positions in the grid
+	  Board.prototype.validCord = function (position) {
+	    var row = position[0];
+	    var col = position[1];
+	
+	    return row >= 0 && row < this.gridSize && col >= 0 && col < this.gridSize;
+	  };
+	
+	  Board.prototype.setBombs = function () {
+	    var totalSetBombs = 0;
+	
+	    while (totalSetBombs < this.totalBombs) {
+	      var row = Math.floor(Math.random() * (this.gridSize - 1));
+	      var col = Math.floor(Math.random() * (this.gridSize - 1));
+	      var tile = this.grid[row][col];
+	
+	      if (!tile.isBomb) {
+	        tile.plantBomb();
+	        totalSetBombs++;
+	      }
+	    }
+	  };
+	
+	  Board.prototype.gameLost = function () {
+	    var lost = false;
+	    this.grid.forEach(function (row) {
+	      row.forEach(function (tile) {
+	        if (tile.isBomb && tile.explored) {
+	          lost = true;
+	        }
+	      });
+	    });
+	
+	    return lost;
+	  };
+	
+	  Board.prototype.gameWon = function () {
+	    var correctFlags = 0;
+	    this.grid.forEach(function (row) {
+	      row.forEach(function (tile) {
+	        if (tile.isBomb && tile.flagged) {
+	          correctFlags++;
+	        }
+	      });
+	    });
+	    return correctFlags === this.totalBombs;
+	  };
+	
+	  Board.prototype.revealAll = function () {
+	    this.grid.forEach(function (row) {
+	      row.forEach(function (tile) {
+	
+	        if (!tile.flagged) {
+	          tile.explored = true;
+	        }
+	      });
+	    });
+	  };
+	
+	  module.exports = {
+	    Board: Board,
+	    Tile: Tile
+	  };
+	})();
 
 /***/ }
 /******/ ]);
