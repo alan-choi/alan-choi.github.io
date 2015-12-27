@@ -17,8 +17,8 @@ var Board = React.createClass({
                   return(
                     <Tile
                       key = { rowIdx * that.props.board.gridSize + colIdx }
-                      tile={tile}
-                      updateGame={that.props.updateGame} />);
+                      tile={ tile }
+                      updateGame={ that.props.updateGame } />);
                 })
               }
             </div>);

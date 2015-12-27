@@ -55,7 +55,7 @@ var Game = React.createClass({
         <h2>Minesweeper</h2>
         <p>(alt + click) to flag tile</p>
         <label>difficulty:</label>
-        <select value={this.state.value} onChange={this.handleLevel}>
+        <select value={ this.state.value } onChange={ this.handleLevel }>
           <option value='easy'>easy</option>
           <option value='medium'>medium</option>
           <option value='expert'>expert</option>
@@ -63,7 +63,7 @@ var Game = React.createClass({
         <Board
           board={ this.state.board }
           updateGame={ this.updateGame }
-          level={this.state.level} />
+          level={ this.state.level } />
       </div>
     );
   }

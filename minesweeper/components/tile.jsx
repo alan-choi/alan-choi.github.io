@@ -27,7 +27,7 @@ var Tile = React.createClass({
     }
 
     return(
-      <div className={"tile "+tileClass} onClick={this.handleClick}> { text } </div>
+      <div className={ "tile "+tileClass } onClick={ this.handleClick }> { text } </div>
     );
   }
 });

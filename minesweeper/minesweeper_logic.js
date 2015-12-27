@@ -121,6 +121,7 @@
 
   Board.prototype.gameLost = function() {
     var lost = false;
+
     this.grid.forEach(function(row){
       row.forEach(function(tile) {
         if (tile.isBomb && tile.explored) {
@@ -134,6 +135,7 @@
 
   Board.prototype.gameWon = function() {
     var correctFlags = 0;
+    
     this.grid.forEach(function(row) {
       row.forEach(function(tile) {
         if (tile.isBomb && tile.flagged) {
