@@ -1,38 +1,90 @@
-.board {
-  margin: 50px auto 0px auto;
-  border: 3px solid lightgray;
-  width: 300px;
-  height: 300px;
-
+.game {
+  text-align: center;
+  font-family: helvetica;
 }
 
 .tile {
-  font-family: 'Josefin Sans';
-  text-align: center;
-  line-height: 30px;
-  float: left;
-  border: 1px solid lightgray;
+  background-color: lightgray;
+  width: 20px;
+  height: 20px;
+  border-width: 1px;
   border-style: outset;
-  width: 30px;
-  height: 30px;
+  float: left;
+  color: white;
+  font-size: 12px;
+  line-height: 20px;
   box-sizing: border-box;
-  background-color: #0099CC;
-  opacity: 0.7;
 }
 
-.revealed {
-  border: 1px solid lightgray;
+.row:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.explored {
+  background-color: gray;
   border-style: inset;
-  background-color: #006699;
+  border-color: gray;
 }
 
-.container h1{
-  font-family: 'Josefin Sans';
+.flagged {
+  font-weight: bold;
+  color: green;
+}
+
+.bomb {
+  color: red;
+}
+
+.tile:hover {
+  background-color: #336699;
+  cursor: pointer;
+}
+
+.row.easy {
+  width: 200px;
   margin: auto;
-  padding-top: 50px;
-  text-align: center;
 }
 
-body {
-  font-family: 'Josefin Sans';
+.row.medium {
+  width: 400px;
+  margin: auto;
+}
+
+.row.expert {
+  width: 500px;
+  margin: auto;
+}
+
+.game-result{
+  position: fixed;
+  width: 100px;
+  padding: 10px;
+  z-index: 5;
+  border-radius: 2px;
+  color: white;
+  background-color: #336666;
+  opacity: 0.9;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+}
+
+select {
+  margin-bottom: 10px;
+}
+
+label {
+  font-size: 12px;
+  margin-right: 5px;
+}
+
+.game > p {
+  font-size: 10px;
+}
+
+h2 {
+  margin: 5px 0px;
 }
