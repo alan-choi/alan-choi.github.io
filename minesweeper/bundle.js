@@ -19936,10 +19936,9 @@
 	
 	  Board.prototype.setBombs = function () {
 	    var totalSetBombs = 0;
-	
 	    while (totalSetBombs < this.totalBombs) {
-	      var row = Math.floor(Math.random() * (this.gridSize - 1));
-	      var col = Math.floor(Math.random() * (this.gridSize - 1));
+	      var row = Math.floor(Math.random() * this.gridSize);
+	      var col = Math.floor(Math.random() * this.gridSize);
 	      var tile = this.grid[row][col];
 	
 	      if (!tile.isBomb) {
@@ -19951,6 +19950,7 @@
 	
 	  Board.prototype.gameLost = function () {
 	    var lost = false;
+	
 	    this.grid.forEach(function (row) {
 	      row.forEach(function (tile) {
 	        if (tile.isBomb && tile.explored) {
@@ -19964,6 +19964,7 @@
 	
 	  Board.prototype.gameWon = function () {
 	    var correctFlags = 0;
+	
 	    this.grid.forEach(function (row) {
 	      row.forEach(function (tile) {
 	        if (tile.isBomb && tile.flagged) {
