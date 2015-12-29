@@ -1,6 +1,7 @@
 var React = require('react');
 
 var Tile = React.createClass({
+
   handleClick: function(event) {
     event.preventDefault();
     var flagged = event.altKey;

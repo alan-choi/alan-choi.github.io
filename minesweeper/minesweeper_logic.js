@@ -120,11 +120,12 @@
 
   Board.prototype.gameLost = function() {
     var lost = false;
-
+    var that = this;
     this.grid.forEach(function(row){
       row.forEach(function(tile) {
         if (tile.isBomb && tile.explored) {
          lost = true;
+         that.revealAll();
        }
       });
     });
@@ -134,15 +135,20 @@
 
   Board.prototype.gameWon = function() {
     var correctFlags = 0;
-
+    var exploredTiles = 0;
     this.grid.forEach(function(row) {
       row.forEach(function(tile) {
         if (tile.isBomb && tile.flagged) {
           correctFlags ++;
         }
+        if (tile.explored) {
+          exploredTiles ++;
+        }
       });
     });
-    return correctFlags === this.totalBombs;
+
+    return correctFlags === this.totalBombs ||
+      exploredTiles === (this.gridSize * this.gridSize - this.totalBombs);
   };
 
   Board.prototype.revealAll = function() {

@@ -7,22 +7,30 @@ var Game = React.createClass({
     var board = new Minesweeper.Board('easy');
     return {
       board: board,
+      gameOver: false,
       level: 'easy'
      };
   },
 
   restartGame: function() {
-    this.setState({ board: new Minesweeper.Board(this.state.level) });
+    this.setState({
+      board: new Minesweeper.Board(this.state.level),
+      gameOver: false
+     });
   },
 
   updateGame: function(tile, flagged) {
-    if (flagged) {
-      tile.toggleFlag();
-    } else {
-      tile.explore();
+    if (!this.state.gameOver) {
+      if (flagged) {
+        tile.toggleFlag();
+      } else {
+        tile.explore();
+      }
+      this.setState({ board: this.state.board });
     }
-
-    this.setState({ board: this.state.board });
+    if (this.gameOver()){
+      this.endGame();
+    }
   },
 
   handleLevel: function(event) {
@@ -33,11 +41,18 @@ var Game = React.createClass({
     });
   },
 
+  gameOver: function() {
+    return (this.state.board.gameLost() || this.state.board.gameWon());
+  },
+
+  endGame: function() {
+    this.setState({ gameOver: true});
+  },
+
   render: function() {
     var gameMessage = "";
 
-    if (this.state.board.gameLost() || this.state.board.gameWon()) {
-      this.state.board.revealAll();
+    if (this.gameOver()) {
       var message = (this.state.board.gameWon() ? "You Win!" : "You Lose!");
       gameMessage = (
         <div className="game-result">
@@ -63,7 +78,8 @@ var Game = React.createClass({
         <Board
           board={ this.state.board }
           updateGame={ this.updateGame }
-          level={ this.state.level } />
+          level={ this.state.level }
+          handleClick={ this.handleClick } />
       </div>
     );
   }
