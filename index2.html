@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Alan Choi</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="images/websitelogo2.jpg" type="image/jpg">
+  <link rel="stylesheet" href="assets/css/main2.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+</head>
+  <body>
+    <div class='container'>
+      <nav>
+        <h1>Alan Choi</h1>
+        <h3>Software Engineer</h3>
+      </nav>
+      <ul class='navbar'>
+        <li><div id='projects-link'>Projects</div></li>
+        <li><div id='history-link'>History</div></li>
+        <li><div id='contact-link'>Contact</div></li>
+      </ul>
+      <section class='main-content'>
+      <section id='projects'class='projects'>
+        <h2 class='section-title'>Recent Projects</h2>
+        <article class='project'>
+          <h3><a href=''>YelpNow</a></h3>
+          <img src='images2/yelpnow.png'/>
+          <p>A clean, quick search interface to find businesses open now.
+            Built with React, Ruby on Rails following Flux.</p>
+        </article>
+        <article class='project'>
+          <h3><a href=''>Local Brew Guide (in progress)</a></h3>
+          <img src='images2/localbrewguide.png'/>
+          <p>A place to learn about local breweries and build
+            custom tours. Built with React, Node, Express, and MongoDB.</p>
+        </article>
+        <article class='project'>
+          <h3><a href=''>Buckets</a></h3>
+          <img src='images2/buckets.png'/>
+          <p>An addicting, fun NBA themed object oriented designed
+            Javascript game.</p>
+        </article>
+        <article class='project'>
+          <h3><a href=''>Chess</a></h3>
+          <img src='images2/chess.png'/>
+          <p>A console-based, colorized, two-player chess game.</p>
+        </article>
+      </section>
+      <section id='history' class='timeline'>
+
+        <h2 class='section-title'>Brief Timeline</h2>
+        <section class='left-events'>
+          <p class='year'>2016</p>
+          <article class='event'>
+            <div class='event-info'>
+              <h2>November 2015</h2>
+              <p>Graduated App Academy (full-stack developement)</p>
+            </div>
+            <div>
+              <span>&#x25b7;</span>
+            </div>
+          </article>
+          <article class='event'>
+            <div class='event-info'>
+              <h2>May 2014</h2>
+              <p>Accepted offer from Apple as a Design for Manufacturing Engineer</p>
+            </div>
+            <div>
+              <span>&#x25b7;</span>
+            </div>
+          </article>
+          <article class='event'>
+            <div class='event-info'>
+              <h2>March 2010</h2>
+              <p>Accepted full-time offer at Qualcomm</p>
+            </div>
+            <div>
+              <span>&#x25b7;</span>
+            </div>
+          </article>
+        </section>
+
+        <section class='right-events'>
+          <article class='event'>
+            <div>
+              <span>&#x25c1;</span>
+            </div>
+            <div class='event-info'>
+              <h2>July 2015</h2>
+              <p>Accepted full-time offer at Qualcomm</p>
+            </div>
+          </article>
+          <article class='event'>
+            <div>
+              <span>&#x25c1;</span>
+            </div>
+            <div class='event-info'>
+              <h2>March 2012</h2>
+              <p>Promoted to Senior Engineer</p>
+            </div>
+          </article>
+          <article class='event'>
+            <div>
+              <span>&#x25c1;</span>
+            </div>
+            <div class='event-info'>
+              <h2>June 2009</h2>
+              <p>Graduated UCSD with a BS in Mechanical Engineering</p>
+            </div>
+          </article>
+          <p class='year'>2009</p>
+        </section>
+      </section>
+
+      <section id='contact' class='contact'>
+        <section class='contact-info'>
+          <article>
+            <img src='images2/profile-pic.png'/>
+            <h2>Alan Choi</h2>
+            <h3>alanchoi08@gmail.com</h3>
+            <h3>(415) 936-4796</h3>
+        </article>
+        <article>
+        <div class='linkedin-icon'>
+          <a href="http://www.linkedin.com/in/alanchoi08" target="_blank">
+            <img src="images2/linkedin-32-white.png" />
+          </a>
+        </div>
+        <div class='git-icon'>
+          <a href="http://www.github.com/alan-choi" target="_blank">
+            <img src="images2/github-32-white.png" />
+          </a>
+        </div>
+      </article>
+          <button class="resume">
+            RESUME
+          </button>
+        </section>
+      </section>
+    </section>
+    </div>
+		<script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script>
+      var component = $(".navbar");
+      var height = $(window).height();
+      $(window).scroll(function() {
+        if ($(this).scrollTop() > height * 0.9) {
+          component.addClass("navbar-scrolled");
+        } else {
+          component.removeClass("navbar-scrolled");
+        }
+      });
+
+      var hrefs = ['projects', 'history', 'contact'];
+      $.map(hrefs, function(item, idx) {
+        $('#'+item+'-link').click(function(){
+            $('html, body').animate({
+                scrollTop: $("#"+item).offset().top
+            }, 700);
+        });
+      });
+    </script>
+  </body>
+</html>
